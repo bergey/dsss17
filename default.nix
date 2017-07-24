@@ -25,6 +25,8 @@ let
   };
 
   dependencies = rec {
+    coqrel = callPackage ./coqrel.nix {};
+
     compcert = callPackage ./compcert.nix {};
 
     QuickChick = withPatches [./QuickChick.patch]
@@ -65,7 +67,7 @@ let
     ott
 
     # Compcert
-    dependencies.compcert 
+    dependencies.compcert
     ocamlPackages.menhir
     ocamlPackages.findlib
 
