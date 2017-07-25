@@ -80,6 +80,13 @@ let
     # VST
     dependencies.vst
 
+    # GHC
+    haskellPkgs.ghc
+    haskellPkgs.alex
+    haskellPkgs.happy
+    haskellPkgs.cabal-install
+    haskellPkgs.hlint
+
     # Editors
     vim
     emacs
