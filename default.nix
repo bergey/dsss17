@@ -44,7 +44,9 @@ let
       haskellPackages = haskellPkgs // haskellDeps;
     };
 
-    vst = callPackage ./vst.nix {};
+    vst = callPackage ./vst.nix {
+        coq = pkgs.coq_8_5;
+    };
   };
 
   software = with pkgs; [
