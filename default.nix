@@ -1,10 +1,13 @@
-{ pkgs ? (import <nixpkgs> { config = {
+let
+  fetchNixpkgs = import ./fetchNixpkgs.nix;
+
+  nixpkgs = fetchNixpkgs (builtins.fromJSON (builtins.readFile ./nixpkgs-snapshot.json));
+        
+  pkgs = import nixpkgs { config = {
     allowUnfree = true;         # because we haven't set license params
     allowBroken = true;
-  };})
-}:
+  };};
 
-let
   haskellPkgs = pkgs.haskell.packages.ghc802;
 
   inherit (pkgs) stdenv;
