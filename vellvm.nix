@@ -10,7 +10,7 @@ stdenv.mkDerivation {
     sha256 = "07miyimbin31m890i063f8lwln42blljfxkgkim8ms9cm6glyfd3";
   };
 
-  buildInputs = [ coq.ocaml coq.camlp5 which unzip ]
+  buildInputs = [ coq.ocaml coq.camlp5 which unzip ocamlPackages.ocamlbuild ]
     ++ (with ocamlPackages; [ findlib menhir ]);
   propagatedBuildInputs = [ coq ];
 

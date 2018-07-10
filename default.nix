@@ -30,23 +30,30 @@ let
   dependencies = rec {
     coqrel = callPackage ./coqrel.nix {};
 
-    compcert = callPackage ./compcert.nix {};
+    compcert = callPackage ./compcert.nix {
+             coq = pkgs.coq_8_6;
+    };
 
     QuickChick = withPatches [./QuickChick.patch]
-      (withSrc ./QuickChick (callPackage ./QuickChick.nix {}));
+      (withSrc ./QuickChick (callPackage ./QuickChick.nix {
+               coq = pkgs.coq_8_6;
+               coqPackages = pkgs.coqPackages_8_6;
+      }));
 
     paco = callPackage ./paco.nix {};
     vellvm = withSrc ./vellvm (callPackage ./vellvm.nix {
       paco = callPackage ./paco.nix {};
+      coq = pkgs.coq_8_6;
+      # ocamlbuild = pkgs.ocamlPackages.ocamlbuild;
     });
 
     metalib = callPackage ./metalib.nix {
       haskellPackages = haskellPkgs // haskellDeps;
     };
 
-    vst = callPackage ./vst.nix {
-        coq = pkgs.coq_8_5;
-    };
+    # vst = callPackage ./vst.nix {
+    #     coq = pkgs.coq_8_6;
+    # };
   };
 
   software = with pkgs; [
@@ -83,7 +90,7 @@ let
     dependencies.metalib
 
     # VST
-    dependencies.vst
+    # dependencies.vst
 
     # GHC
     haskellPkgs.ghc

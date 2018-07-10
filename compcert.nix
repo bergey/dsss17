@@ -7,11 +7,11 @@ assert lib.versionAtLeast ocamlPackages.ocaml.version "4.02";
 
 stdenv.mkDerivation rec {
   name    = "compcert-${version}";
-  version = "3.0.1";
+  version = "3.1";
 
   src = fetchurl {
     url    = "http://compcert.inria.fr/release/${name}.tgz";
-    sha256 = "0dgrj26dzdy4n3s9b5hwc6lm54vans1v4qx9hdp1q8w1qqcdriq9";
+    sha256 = "0irfwlw2chalp0g2gw0makc699hn3z37sha1a239p9d90mzx03cx";
   };
 
   buildInputs = [ coq ]
